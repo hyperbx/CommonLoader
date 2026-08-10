@@ -119,6 +119,45 @@ size_t CMN_LOADER_API GetStateImpl(size_t state)
 	return CommonLoader::ApplicationStore::GetState(state);
 }
 
+#pragma managed
+
+#include "ManagedCommonLoader.h"
+
+bool CMN_LOADER_API FindCodeImpl(const char* id, Code_t* code)
+{
+	for each (CommonLoader::CodeObject^ hCodeObj in CommonLoader::ManagedCommonLoader::AssemblyLoader->Codes)
+	{
+		if (*hCodeObj->ID == id || *hCodeObj->FullName == id)
+		{
+			if (code)
+			{
+				if (code->szCode != sizeof(Code_t))
+				{
+					Logger::Error
+					(
+						"FindCode received a Code_t structure of invalid size. Expected: {}. Received: {}.",
+						sizeof(Code_t), code->szCode
+					);
+				}
+
+				*code = Code_t
+				(
+					hCodeObj->ID->c_str(),
+					hCodeObj->Name->c_str(),
+					hCodeObj->Author->c_str(),
+					hCodeObj->Category->c_str()
+				);
+			}
+
+			return true;
+		}
+	}
+
+	return false;
+}
+
+#pragma unmanaged
+
 namespace CommonLoader
 {
 	const CommonLoaderAPI api_table
@@ -136,6 +175,7 @@ namespace CommonLoader
 		RemoveAssemblerSymbolImpl,
 		SetStateImpl,
 		SetStateFlagImpl,
-		GetStateImpl
+		GetStateImpl,
+		FindCodeImpl
 	};
 }
