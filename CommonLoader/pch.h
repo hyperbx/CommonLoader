@@ -20,6 +20,8 @@
 #include <fstream>
 #include <charconv>
 
+#include <CommonLib.h>
+
 #define FMT_HEADER_ONLY
 #include <fmt/core.h>
 

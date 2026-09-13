@@ -1,3 +1,6 @@
+[submodule "CommonLoader/externals/CommonLib"]
+	path = CommonLoader/externals/CommonLib
+	url = https://github.com/hedge-dev/CommonLib.git
 [submodule "CommonLoader/externals/fmt"]
 	path = CommonLoader/externals/fmt
 	url = https://github.com/fmtlib/fmt.git

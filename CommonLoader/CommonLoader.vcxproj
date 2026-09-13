@@ -99,7 +99,7 @@
       <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(ProjectDir)externals\fmt\include;$(ProjectDir);$(ProjectDir)externals\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)externals\CommonLib\include;$(ProjectDir)externals\fmt\include;$(ProjectDir)externals\json\include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ConformanceMode>Default</ConformanceMode>
     </ClCompile>
     <Link>
@@ -114,6 +114,9 @@
       <AdditionalDependencies>shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ExportNamedFunctions>%(ExportNamedFunctions)</ExportNamedFunctions>
     </Lib>
+    <PreBuildEvent>
+      <Command>"$(ProjectDir)externals\CommonLib\CommonLib.bat" build --target_arch $(Platform) --target_vs $(VisualStudioVersion) --configure_target_dir "bin\stable"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -124,7 +127,7 @@
       <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(ProjectDir)externals\fmt\include;$(ProjectDir);$(ProjectDir)externals\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)externals\CommonLib\include;$(ProjectDir)externals\fmt\include;$(ProjectDir)externals\json\include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ConformanceMode>Default</ConformanceMode>
     </ClCompile>
     <Link>
@@ -141,6 +144,9 @@
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ExportNamedFunctions>%(ExportNamedFunctions)</ExportNamedFunctions>
     </Lib>
+    <PreBuildEvent>
+      <Command>"$(ProjectDir)externals\CommonLib\CommonLib.bat" build --target_arch $(Platform) --target_vs $(VisualStudioVersion) --configure_target_dir "bin\stable"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -151,7 +157,7 @@
       <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(ProjectDir)externals\fmt\include;$(ProjectDir);$(ProjectDir)externals\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)externals\CommonLib\include;$(ProjectDir)externals\fmt\include;$(ProjectDir)externals\json\include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ConformanceMode>Default</ConformanceMode>
     </ClCompile>
     <Link>
@@ -166,6 +172,9 @@
       <AdditionalDependencies>shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ExportNamedFunctions>%(ExportNamedFunctions)</ExportNamedFunctions>
     </Lib>
+    <PreBuildEvent>
+      <Command>"$(ProjectDir)externals\CommonLib\CommonLib.bat" build --target_arch $(Platform) --target_vs $(VisualStudioVersion) --configure_target_dir "bin\stable"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -177,7 +186,7 @@
       <ForcedIncludeFiles>%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(ProjectDir)externals\fmt\include;$(ProjectDir);$(ProjectDir)externals\json\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)externals\CommonLib\include;$(ProjectDir)externals\fmt\include;$(ProjectDir)externals\json\include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ConformanceMode>Default</ConformanceMode>
     </ClCompile>
     <Link>
@@ -192,6 +201,9 @@
       <AdditionalDependencies>shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ExportNamedFunctions>%(ExportNamedFunctions)</ExportNamedFunctions>
     </Lib>
+    <PreBuildEvent>
+      <Command>"$(ProjectDir)externals\CommonLib\CommonLib.bat" build --target_arch $(Platform) --target_vs $(VisualStudioVersion) --configure_target_dir "bin\stable"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ApplicationStore.h" />
@@ -248,11 +260,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\CommonLoader\ClrHost.Managed\ClrHost.Managed.csproj">
-      <Project>{fc432a90-3521-e881-dfb7-cf54d540b36a}</Project>
+    <ProjectReference Include="..\ClrHost.Managed\ClrHost.Managed.csproj">
+      <Project>{864ee755-762a-48bf-8a8d-ab31ce614959}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\CommonLoader\CommonLoader.Managed\CommonLoader.Managed.csproj">
-      <Project>{238d2f91-6558-ed86-41bf-047672a5f4f4}</Project>
+    <ProjectReference Include="..\ClrHost.Tasks\ClrHost.Tasks.csproj">
+      <Project>{42065b4f-f1c7-480b-94c0-b7cc857c1054}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonLoader.Managed\CommonLoader.Managed.csproj">
+      <Project>{2c60074f-a8dd-4c50-ab1b-5da697591767}</Project>
     </ProjectReference>
     <ProjectReference Include="externals\capstone\capstone.vcxproj">
       <Project>{5b01d900-2359-44ca-9914-6b0c6afb7be7}</Project>
