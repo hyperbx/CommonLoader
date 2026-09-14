@@ -273,6 +273,9 @@
       <Project>{5b01d900-2359-44ca-9914-6b0c6afb7be7}</Project>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
+    <ProjectReference Include="externals\CommonLib\bin\stable\include\CommonLib.vcxproj">
+      <Project>{5d3ed5fc-4344-3991-83e2-0987e5fc4eae}</Project>
+    </ProjectReference>
     <ProjectReference Include="externals\keystone\keystone.vcxproj">
       <Project>{c6d21248-1e8a-3624-b048-a3ef5b5a42c3}</Project>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>

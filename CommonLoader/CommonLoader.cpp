@@ -108,7 +108,7 @@ void CommonLoader::RaiseInitializers()
 
 void CommonLoader::RaiseUpdates()
 {
-	MANAGED_INVOKE(void, RaiseUpdates);
+	MANAGED_INVOKE(void, RaiseUpdates)();
 }
 
 const CommonLoaderAPI* CommonLoader::GetAPI()

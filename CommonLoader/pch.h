@@ -33,8 +33,6 @@
 #include "externals/ini.h"
 #include "externals/xxhash.h"
 
-#include "Registry.h"
-#include "Environment.h"
 #include "clrhost/dotnet.h"
 
 #endif // PCH_H

@@ -163,7 +163,7 @@ namespace dotnet
 
     inline std::optional<std::filesystem::path> FindRoot()
     {
-        auto envRoot = CommonLoader::GetEnvironment<std::filesystem::path>(L"DOTNET_ROOT");
+        auto envRoot = hedgedev::csl::ut::env::GetVariable<std::filesystem::path>(L"DOTNET_ROOT");
         if (envRoot.has_value()) return envRoot.value();
 
         std::filesystem::path regRoot = (sizeof(size_t) == 8) ? 
@@ -171,8 +171,8 @@ namespace dotnet
             L"HKEY_LOCAL_MACHINE\\SOFTWARE\\dotnet\\Setup\\InstalledVersions\\x86";
 
         std::filesystem::path rootPath{};
-        if (CommonLoader::Registry::Read(regRoot, L"InstallLocation", rootPath)) return rootPath;
-        else if (CommonLoader::Registry::Read(regRoot / "sharedhost", L"Path", rootPath)) return rootPath;
+        if (hedgedev::csl::cfg::registry::Read(regRoot, L"InstallLocation", rootPath)) return rootPath;
+        else if (hedgedev::csl::cfg::registry::Read(regRoot / "sharedhost", L"Path", rootPath)) return rootPath;
 
         PWSTR programFilesRaw;
         if (SHGetKnownFolderPath(FOLDERID_ProgramFiles, 0, NULL, &programFilesRaw) != S_OK)
